@@ -28,12 +28,17 @@ ALL_UTILS = \
 
 ALL_MONO_PROJS = \
 	Wrappers/OpenNI.net
+
+#ALL_JAVA_PROJS = \
+#	Wrappers/OpenNI.jni \
+#	Wrappers/OpenNI.java
 	
 # list all core projects
 ALL_CORE_PROJS = \
 	OpenNI \
 	$(ALL_MODULES) \
 	$(ALL_UTILS) \
+#	$(ALL_JAVA_PROJS)
 
 # list all samples
 CORE_SAMPLES = \
@@ -70,8 +75,14 @@ MONO_FORMS_SAMPLES = \
 	Samples/SimpleViewer.net \
 	Samples/UserTracker.net
 	
+#JAVA_SAMPLES = \
+#	Samples/SimpleRead.java \
+#	Samples/SimpleViewer.java \
+#	Samples/UserTracker.java \
+
 ALL_SAMPLES = \
-	$(CORE_SAMPLES) 
+	$(CORE_SAMPLES) \
+#	$(JAVA_SAMPLES)
 
 # list all projects that are build
 ALL_BUILD_PROJS = \
@@ -147,7 +158,8 @@ Utils/niReg:			OpenNI
 Utils/niLicense:		OpenNI
 
 Wrappers/OpenNI.net:		OpenNI
-Wrappers/OpenNI.jni:		OpenNI
+#Wrappers/OpenNI.jni:		OpenNI
+#Wrappers/OpenNI.java:		Wrappers/OpenNI.jni
 
 Samples/NiSimpleRead:		OpenNI
 Samples/NiBackRecorder:		OpenNI
@@ -158,7 +170,7 @@ Samples/NiSimpleCreate:		OpenNI
 Samples/NiCRead:		OpenNI
 Samples/NiAudioSample:		OpenNI
 Samples/NiSimpleSkeleton:	OpenNI
-Samples/NiSkeletonBenchmark:    OpenNI
+Samples/NiSkeletonBenchmark: OpenNI
 Samples/NiUserTracker:		OpenNI
 Samples/NiUserSelection:	OpenNI
 Samples/NiHandTracker:		OpenNI
@@ -168,6 +180,10 @@ Samples/NiSimpleViewer:		OpenNI
 Samples/SimpleRead.net:		Wrappers/OpenNI.net
 Samples/SimpleViewer.net:	Wrappers/OpenNI.net
 Samples/UserTracker.net:	Wrappers/OpenNI.net
+
+#Samples/SimpleRead.java:	Wrappers/OpenNI.java
+#Samples/SimpleViewer.java:	Wrappers/OpenNI.java
+#Samples/UserTracker.java:	Wrappers/OpenNI.java
 
 
 # clean is cleaning all projects
@@ -179,7 +195,7 @@ redist: all
 
 # install target
 install: redist
-	cd ../Redist; ./install.sh; cd -
+	cd ../Redist/OpenNI-Bin-Dev-Linux-x64-v1.5.7.10; ./install.sh; cd -
 
 # uninstall target
 uninstall:

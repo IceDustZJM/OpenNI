@@ -109,7 +109,7 @@ def fix_file(arg,dirname,fname):
         if os.path.isdir(filePath):
             continue
 
-        ext = ['c','cpp','h','ini','cs','java']
+        ext = ['c','cpp','h','ini','cs']
         if filename == "Makefile" or filename.partition(".")[2] in ext:
             #print "Fixing: " + filePath
             tempName=filePath+'~~~'
@@ -125,8 +125,7 @@ def fix_file(arg,dirname,fname):
                 s = re.sub(r"include ../../Common/CommonDefs.mak",r"include ../Build/Common/CommonDefs.mak",s)
                 s = re.sub(r"include ../../Common/CommonCppMakefile",r"LIB_DIRS += ../../Lib\ninclude ../Build/Common/CommonCppMakefile",s)
                 s = re.sub(r"include ../../Common/CommonCSMakefile",r"LIB_DIRS += ../../Lib\ninclude ../Build/Common/CommonCSMakefile",s)
-                s = re.sub(r"include ../../Common/CommonJavaMakefile",r"LIB_DIRS += ../../Lib\ninclude ../Build/Common/CommonJavaMakefile",s)
-
+                
                 output.write(s)
                 
                 #if s != olds:
@@ -306,7 +305,6 @@ shutil.copy("Bin/" + PLATFORM + "-Release/libnimCodecs"+LIBS_TYPE, REDIST_DIR + 
 shutil.copy("Bin/" + PLATFORM + "-Release/libnimMockNodes"+LIBS_TYPE, REDIST_DIR + "/Lib")
 shutil.copy("Bin/" + PLATFORM + "-Release/libnimRecorder"+LIBS_TYPE, REDIST_DIR + "/Lib")
 shutil.copy("Bin/" + PLATFORM + "-Release/libOpenNI"+LIBS_TYPE, REDIST_DIR + "/Lib")
-shutil.copy("Bin/" + PLATFORM + "-Release/libOpenNI.jni"+LIBS_TYPE, REDIST_DIR + "/Lib")
 
 #bin
 MonoDetected = 0
@@ -319,11 +317,6 @@ if PLATFORM == 'x86' or PLATFORM == 'x64':
         shutil.copy("Bin/" + PLATFORM + "-Release/OpenNI.net.dll", REDIST_DIR + "/Samples/Bin/" + PLATFORM + "-Release")
         MonoDetected = 1
         
-# java wrapper
-shutil.copy("Bin/" + PLATFORM + "-Release/org.openni.jar", REDIST_DIR + "/Jar")
-shutil.copy("Bin/" + PLATFORM + "-Release/org.openni.jar", REDIST_DIR + "/Samples/Bin/" + PLATFORM + "-Debug")
-shutil.copy("Bin/" + PLATFORM + "-Release/org.openni.jar", REDIST_DIR + "/Samples/Bin/" + PLATFORM + "-Release")
-
 #docs
 shutil.copytree("../../Source/DoxyGen/html", REDIST_DIR + "/Documentation/html")
 
